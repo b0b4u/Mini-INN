@@ -4,8 +4,6 @@ import main.KeyHandler;
 import main.GamePanel;
 
 import java.awt.image.BufferedImage;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
 
@@ -16,9 +14,15 @@ public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
 
+    public final int screenX;
+    public final int screenY;
+
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
+
+        screenX = gp.screenWidth / 2 - (gp.titleSize / 2);
+        screenY = gp.screenHeight / 2 - (gp.titleSize / 2);
 
         setDefaultValues();
         getPlayerImage();
@@ -26,8 +30,8 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-        x = 100;
-        y = 100;
+        worldX = gp.titleSize * 23;
+        worldY = gp.titleSize * 21;
         speed = 5;
         direction = "down";
     }
@@ -54,24 +58,25 @@ public class Player extends Entity {
 
         if (keyH.upPressed == true || keyH.downPressed == true
                 || keyH.leftPressed == true || keyH.rightPressed == true) {
+
             if (keyH.upPressed == true) {
                 direction = "up";
-                y -= speed;
+                worldY -= speed;
             }
 
             else if (keyH.downPressed == true) {
                 direction = "down";
-                y += speed;
+                worldY += speed;
             }
 
             else if (keyH.leftPressed == true) {
                 direction = "left";
-                x -= speed;
+                worldX -= speed;
             }
 
             else if (keyH.rightPressed == true) {
                 direction = "right";
-                x += speed;
+                worldX += speed;
             }
 
             spriteCounter++;
@@ -125,7 +130,7 @@ public class Player extends Entity {
                 break;
 
         }
-        g2.drawImage(image, x, y, gp.titleSize, gp.titleSize, null);
+        g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
 
     }
 }

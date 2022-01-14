@@ -15,10 +15,13 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3;
 
     public final int titleSize = originalTitleSize * scale;
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 12;
-    final int screenWidth = titleSize * maxScreenCol;
-    final int screenHeight = titleSize * maxScreenRow;
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 12;
+    public final int screenWidth = titleSize * maxScreenCol;
+    public final int screenHeight = titleSize * maxScreenRow;
+
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
 
     int FPS = 60;
 
@@ -68,7 +71,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             if (timer >= 1000000000) {
-                System.out.println("FPS:" + drawCount);
                 drawCount = 0;
                 timer = 0;
 
