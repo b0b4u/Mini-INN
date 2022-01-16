@@ -5,6 +5,7 @@ import main.GamePanel;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -21,8 +22,14 @@ public class Player extends Entity {
         this.gp = gp;
         this.keyH = keyH;
 
-        screenX = gp.screenWidth / 2 - (gp.titleSize / 2);
-        screenY = gp.screenHeight / 2 - (gp.titleSize / 2);
+        screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+        screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+
+        solidAera = new Rectangle();
+        solidAera.x = 8;
+        solidAera.y = 16;
+        solidAera.width = 32;
+        solidAera.height = 32;
 
         setDefaultValues();
         getPlayerImage();
@@ -30,8 +37,8 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-        worldX = gp.titleSize * 23;
-        worldY = gp.titleSize * 21;
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 21;
         speed = 5;
         direction = "down";
     }
@@ -130,7 +137,7 @@ public class Player extends Entity {
                 break;
 
         }
-        g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
 }
